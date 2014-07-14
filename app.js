@@ -5,8 +5,10 @@
 
 var express = require('express'),
     routes = require('./routes'),
+    minou = require('./db'),
     http = require('http'),
     path = require('path');
+
 
 var app = express();
 
@@ -21,22 +23,14 @@ app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
-// MONGOOSE CONNECTION 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
-var db = mongoose.connection;
-// MONGOOSE ERROR CHECK
-db.on('error', console.error.bind(console, ':connection error'));
-db.once('open', function callback(){
-     var kittySchema = mongoose.Schema({
-         name: 'String'
-     });
-     // compiling the schema into a model
-     var kitty = mongoose.model('kitty', kittySchema);
-     var minou = new kitty({name:'minou'});
-    console.log(minou.name+' said: the connection to the database is working like a charm chief :) ');
-    // Creating a method to our schema 'kittySchema'
-});
+    var minou = new minou({name:"minouninou"});
+    console.log( minou.name+ ' said : the connection work like a charm chief');
+
+
+
+
+
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -45,6 +39,11 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 app.get('*', routes.index);
+
+
+
+
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

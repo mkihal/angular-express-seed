@@ -1,11 +1,19 @@
-doctype html
-html(ng-app="myapp")
+doctype html
+html(ng-app="myapp" lang="en")
   head
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js",type="application/javascript")
+
+    link(rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet" href="app/stylesheets/style.css")
+    script(src="app/bower_components/jquery/dist/jquery.min.js")
+    script(src="app/bower_components/bootstrap/dist/js/bootstrap.min.js")
+    script(src="app/lib/angular/angular.min.js")
+
+
     script(src="app/app.js",type="application/javascript")
     script(src="app/controllers.js",type="application/javascript")
     script(src="app/directives.js",type="application/javascript")
   body
+    div(class="container-fluid")
     div(ng-view)
-      block content
+
+    //  block content
