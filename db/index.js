@@ -12,4 +12,3 @@ var kittySchema = mongoose.Schema({
 var kitty = mongoose.model('kitty', kittySchema);
 
 module.exports = kitty;
-// watch this on git man, check it
